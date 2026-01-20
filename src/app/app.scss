@@ -1,4 +1,3 @@
-/* WRAPPER THAT STACKS IMAGE + TEXT */
 .hero {
   position: relative;
   width: 100%;
@@ -9,17 +8,15 @@
   justify-content: center;
 }
 
-/* IMAGE — centered, static width */
 .backgroundLaptop {
   display: none;
 }
 
-/* TEXT — centered OVER the image */
 .content {
-  position: absolute; /* sits on top of the image */
+  position: absolute;
   top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%); /* perfect centering */
+  transform: translate(-50%, -50%);
   text-align: center;
   max-width: 80%;
 }
@@ -36,9 +33,6 @@
   margin-top: 0.75rem;
 }
 
-/* ------------------------------ */
-/* TABLET BREAKPOINT (700px)      */
-/* ------------------------------ */
 @media (min-width: 700px) {
   .content-header {
     font-size: 1.25rem;
@@ -49,13 +43,10 @@
   }
 }
 
-/* ------------------------------ */
-/* DESKTOP BREAKPOINT (900px)     */
-/* ------------------------------ */
 @media (min-width: 900px) {
   .backgroundLaptop {
     display: block;
-    width: calc(900px - 60px); /* static width rule */
+    width: calc(900px - 60px);
     max-width: 100%;
   }
 
@@ -72,9 +63,6 @@
   }
 }
 
-/* ------------------------------ */
-/* LARGE DESKTOP (1200px)         */
-/* ------------------------------ */
 @media (min-width: 1200px) {
   .backgroundLaptop {
     width: calc(1200px - 60px);
