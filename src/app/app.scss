@@ -1,69 +1,93 @@
-.container {
-  min-height: 100vh;
+/* WRAPPER THAT STACKS IMAGE + TEXT */
+.hero {
   position: relative;
-  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* IMAGE — centered, static width */
 .backgroundLaptop {
   display: none;
 }
+
+/* TEXT — centered OVER the image */
 .content {
-  position: absolute;
-  top: 10%;
-  left: 30%;
-  width: 50%;
-  height: 40%;
-  padding: 1rem;
-  overflow: hidden;
-  place-items: center;
-  border-radius: 4px;
+  position: absolute; /* sits on top of the image */
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* perfect centering */
+  text-align: center;
+  max-width: 80%;
 }
 
 .content-header {
   font-family: 'Monaco';
   font-style: italic;
-  font-size: 0.75em;
+  font-size: 0.9rem;
 }
 
 .content-paragraph {
   font-family: 'Andale Mono', monospace;
-  font-size: 0.5em;
+  font-size: 0.7rem;
+  margin-top: 0.75rem;
 }
 
+/* ------------------------------ */
+/* TABLET BREAKPOINT (700px)      */
+/* ------------------------------ */
 @media (min-width: 700px) {
   .content-header {
-    font-size: 25px;
+    font-size: 1.25rem;
   }
+
   .content-paragraph {
-    font-size: 0.75em;
+    font-size: 0.9rem;
   }
 }
 
+/* ------------------------------ */
+/* DESKTOP BREAKPOINT (900px)     */
+/* ------------------------------ */
 @media (min-width: 900px) {
   .backgroundLaptop {
-    width: 100%;
     display: block;
+    width: calc(900px - 60px); /* static width rule */
+    max-width: 100%;
   }
+
   .content {
-    top: 18%;
-    width: 40%;
+    max-width: 380px;
   }
+
   .content-header {
-    font-size: 1.25em;
+    font-size: 1.5rem;
   }
+
   .content-paragraph {
-    padding-top: 20px;
-    font-size: 0.75em;
+    font-size: 1rem;
   }
 }
 
+/* ------------------------------ */
+/* LARGE DESKTOP (1200px)         */
+/* ------------------------------ */
 @media (min-width: 1200px) {
+  .backgroundLaptop {
+    width: calc(1200px - 60px);
+  }
+  .content {
+    max-width: 450px;
+  }
+
   .content-header {
-    font-size: 2em;
+    font-size: 2rem;
   }
 
   .content-paragraph {
-    font-size: 1em;
-    margin: 20px;
+    font-size: 1.25rem;
   }
 }
