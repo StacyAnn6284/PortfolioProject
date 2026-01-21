@@ -1,15 +1,18 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-
+  top: 100px;
   display: flex;
-  align-items: center;
+
   justify-content: center;
 }
 
 .backgroundLaptop {
   display: none;
+}
+
+.mobileBackground {
+  width: 410px;
 }
 
 .content {
@@ -34,6 +37,9 @@
 }
 
 @media (min-width: 700px) {
+  .mobileBackground {
+    width: 650px;
+  }
   .content-header {
     font-size: 1.25rem;
   }
@@ -44,6 +50,14 @@
 }
 
 @media (min-width: 900px) {
+  .hero {
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .mobileBackground {
+    display: none;
+  }
   .backgroundLaptop {
     display: block;
     width: calc(900px - 60px);
