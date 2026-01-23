@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { WeatherAppComponent } from './weather-app/weather-app';
 
 @Component({
   selector: 'app-projects',
-  imports: [],
+  imports: [WeatherAppComponent],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
-export class Projects {
-
-}
+export class Projects {}

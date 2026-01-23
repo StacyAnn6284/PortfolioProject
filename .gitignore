@@ -43,3 +43,7 @@ Thumbs.db
 
 #firebase files
 src/app/firebase-config.ts
+
+# Angular environment files
+src/environments/environment.ts
+src/environments/environment.prod.ts

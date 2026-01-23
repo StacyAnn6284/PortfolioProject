@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Enter your location:</h2>
+  <form [formGroup]="weatherSearchForm" (ngSubmit)="sendToWeatherApi()">
+    <input type="text" id="weatherLocation" placeholder="Location" formControlName="location" />
+    <button type="submit">Search</button>
+  </form>
+  @if (weatherLocation) {
+    <h2>Weather Details for {{ weatherLocation }}:</h2>
+    @for (forecastPeriod of forecastPeriods; track $index; let i = $index) {
+      <div class="forecastPeriod-card" (click)="toggle(i)">
+        <div class="forecastPeriod-header">
+          <h3>{{ forecastPeriod.name }}</h3>
+          <span class="temp">{{ forecastPeriod.temperature }}°F</span>
+        </div>
+
+        @if (!expanded[i]) {
+          <div class="collapsed-row">
+            <span class="short">{{ forecastPeriod.shortForecast }}</span>
+            <span class="hint">click to expand</span>
+          </div>
+        }
+        @if (expanded[i]) {
+          <div class="forecastPeriod-details">
+            <p class="detailed">{{ forecastPeriod.detailedForecast }}</p>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>
