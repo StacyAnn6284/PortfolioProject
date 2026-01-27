@@ -10,12 +10,12 @@
   <div class="mobile-menu" (click)="menuOpen.set(true)" [class.hidden]="menuOpen()">
     <app-hamburger></app-hamburger>
   </div>
-  <div class="mobile-dropdown" [class.open]="menuOpen()">
+  <div id="mobile-dropdown" class="mobile-dropdown" [class.open]="menuOpen()">
     <button class="close-row" type="button" (click)="menuOpen.set(false)">
       <app-x-mark></app-x-mark>
     </button>
-    <a routerLink="/home">Home</a>
-    <a routerLink="/about">About Me</a>
-    <a routerLink="/projects">Projects</a>
+    <a routerLink="/home" (click)="menuOpen.set(false)">Home</a>
+    <a routerLink="/about" (click)="menuOpen.set(false)">About Me</a>
+    <a routerLink="/projects" (click)="menuOpen.set(false)">Projects</a>
   </div>
 </div>

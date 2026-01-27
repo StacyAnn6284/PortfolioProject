@@ -47,7 +47,27 @@ form {
   }
 }
 
-/* Matches: <div class="forecastPeriod-card"> */
+.current-card {
+  cursor: default; /* no pointer hand */
+  pointer-events: none; /* prevents accidental clicks */
+  background: #ffffff; /* clean, solid background */
+  border: 2px solid #3d4b66; /* stronger border to stand out */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transform: none; /* no hover movement */ /* Remove hover effect inherited from .forecastPeriod-card */
+  &:hover {
+    background: #ffffff;
+  }
+  .forecastPeriod-header h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2c3a52;
+  }
+  .temp {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #2c3a52;
+  }
+}
 .forecastPeriod-card {
   background: #f7f9fc;
   border: 1px solid #e3e7ef;
@@ -62,7 +82,6 @@ form {
   }
 }
 
-/* Matches: <div class="forecastPeriod-header"> */
 .forecastPeriod-header {
   display: flex;
   justify-content: space-between;
@@ -99,7 +118,6 @@ form {
   margin-left: auto;
 }
 
-/* Matches: <div class="forecastPeriod-details"> */
 .forecastPeriod-details {
   margin-top: 0.75rem;
 

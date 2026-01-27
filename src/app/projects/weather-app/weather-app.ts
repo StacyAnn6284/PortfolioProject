@@ -14,6 +14,7 @@ export class WeatherAppComponent implements OnInit {
   private _formbuilder = inject(FormBuilder);
   public forecastPeriods: ForecastPeriod[] = [];
   public expanded: boolean[] = [];
+  public tempToF: number = 0;
 
   constructor(private formBuilder: FormBuilder) {}
   private weatherApi = inject(WeatherApiService);
@@ -25,20 +26,29 @@ export class WeatherAppComponent implements OnInit {
   }
 
   public weatherLocation = '';
+  public currentWeather: any;
 
   sendToWeatherApi() {
-    const location = this.weatherSearchForm.value.location;
+    const location = this.weatherSearchForm.value.location ?? '';
+    this.weatherLocation = location;
+
+    this.weatherApi.getWeather(location).subscribe({
+      next: (weather) => {
+        console.log(weather);
+        this.currentWeather = weather;
+        this.tempToF = Math.round((weather.main.temp - 273.15) * (9 / 5) + 32);
+      },
+      error: (err) => console.error('Weather error:', err),
+    });
     this.weatherApi.getForecast(location).subscribe({
       next: (forecast) => {
-        console.log(forecast);
         this.forecastPeriods = forecast.properties?.periods ?? [];
-
         this.expanded = this.forecastPeriods.map(() => false);
       },
-      error: (err) => console.error(err),
+      error: (err) => console.error('Forecast error:', err),
     });
-    this.weatherLocation = this.weatherSearchForm.value.location ?? '';
   }
+
   toggle(index: number) {
     this.expanded[index] = !this.expanded[index];
   }

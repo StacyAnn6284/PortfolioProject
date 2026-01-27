@@ -6,6 +6,17 @@
   </form>
   @if (weatherLocation) {
     <h2>Weather Details for {{ weatherLocation }}:</h2>
+    <div class="forecastPeriod-card current-card">
+      <div class="forecastPeriod-header">
+        <h3>Current Conditions</h3>
+        <span class="temp">{{ tempToF }}°F</span>
+      </div>
+
+      <div class="collapsed-row">
+        <span class="short">{{ currentWeather?.weather[0]?.description }}</span>
+      </div>
+    </div>
+
     @for (forecastPeriod of forecastPeriods; track $index; let i = $index) {
       <div class="forecastPeriod-card" (click)="toggle(i)">
         <div class="forecastPeriod-header">

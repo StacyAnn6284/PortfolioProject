@@ -9,8 +9,10 @@ import { environment } from 'environments/environment';
 })
 export class WeatherApiService {
   private geocodKey = environment.geocodApiKey;
-
+  private openWeatherKey = environment.openWeatherKey;
   constructor(private http: HttpClient) {}
+
+  private apiKey = '1bd415144549a15084267c6e70c31e1f';
 
   convertToLatAndLong(location: string): Observable<{ lat: number; lng: number }> {
     const url = `https://api.geocod.io/v1.7/geocode?q=${encodeURIComponent(
@@ -22,15 +24,20 @@ export class WeatherApiService {
         if (!data.results || data.results.length === 0) {
           throw new Error('No geocoding results found');
         }
-
         const { lat, lng } = data.results[0].location;
         return { lat, lng };
       }),
     );
   }
 
+  getCurrentWeather(lat: number, lng: number): Observable<any> {
+    return this.http.get(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${this.openWeatherKey}`,
+    );
+  }
+
   getWeatherPoint(lat: number, lng: number): Observable<any> {
-    return this.http.get<any>(`https://api.weather.gov/points/${lat},${lng}`);
+    return this.http.get(`https://api.weather.gov/points/${lat},${lng}`);
   }
 
   getForecastFromPoint(pointData: any): Observable<any> {
@@ -42,6 +49,12 @@ export class WeatherApiService {
     return this.convertToLatAndLong(location).pipe(
       switchMap(({ lat, lng }) => this.getWeatherPoint(lat, lng)),
       switchMap((pointData) => this.getForecastFromPoint(pointData)),
+    );
+  }
+
+  getWeather(location: string): Observable<any> {
+    return this.convertToLatAndLong(location).pipe(
+      switchMap(({ lat, lng }) => this.getCurrentWeather(lat, lng)),
     );
   }
 }
