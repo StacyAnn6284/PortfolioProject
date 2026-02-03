@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+  color: #917883;
+  font-family: 'Andale Mono', monospace;
+}
+.project-container {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #3d4b66;
+}
+
+.project-button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
