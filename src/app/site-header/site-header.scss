@@ -126,6 +126,43 @@
   cursor: pointer;
 }
 
+.auth-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+
+  font-family: 'Merriweather', serif;
+  color: #5d7298;
+
+  a,
+  span,
+  div {
+    font-size: 14px;
+  }
+
+  a,
+  div {
+    cursor: pointer;
+    color: #3d4b66;
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background: rgba(61, 75, 102, 0.1);
+      color: #2c374b;
+    }
+  }
+}
+
 @media (min-width: 900px) {
   .right {
     display: flex;

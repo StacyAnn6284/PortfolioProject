@@ -10,6 +10,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./projects/project-view/project-view').then((m) => m.ProjectViewPage),
   },
+  {
+    path: 'login',
+    loadComponent: () => import('./login-register/login').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./login-register/register').then((m) => m.RegisterComponent),
+  },
   ...PROJECT_ROUTES,
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -1,3 +1,6 @@
+@if (!loggedIn()) {
+  <h1>Please log in to create your List</h1>
+}
 <div class="todo-container" *ngIf="todoList$ | async as todos">
   <h1>Family To Do List</h1>
   <h4>Total Items: {{ todos.length }}</h4>

@@ -7,6 +7,7 @@
     <a routerLink="/about">About Me</a>
     <a routerLink="/projects">Projects</a>
   </div>
+
   <div class="mobile-menu" (click)="menuOpen.set(true)" [class.hidden]="menuOpen()">
     <app-hamburger></app-hamburger>
   </div>
@@ -18,4 +19,18 @@
     <a routerLink="/about" (click)="menuOpen.set(false)">About Me</a>
     <a routerLink="/projects" (click)="menuOpen.set(false)">Projects</a>
   </div>
+</div>
+@if (authService.currentUser() == null) {
+  <div class="login-banner auth-banner">
+    <a routerLink="/login">Login</a>
+    <a routerLink="/register">Register</a>
+  </div>
+}
+<div>
+  @if (authService.currentUser()) {
+    <div class="user-banner auth-banner">
+      <span>Welcome, {{ authService.currentUser()?.username }}</span>
+      <div (click)="logout()">Logout</div>
+    </div>
+  }
 </div>
