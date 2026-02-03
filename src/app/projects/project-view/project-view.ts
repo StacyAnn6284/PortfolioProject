@@ -11,8 +11,8 @@ export class ProjectViewPage {
   private readonly _router = inject(Router);
   private readonly _route = inject(ActivatedRoute);
 
-  showToDo() {
-    this._router.navigate(['/to-do-list'], { relativeTo: this._route });
+  showRecipeBox() {
+    this._router.navigate(['/recipe-box-list'], { relativeTo: this._route });
   }
 
   showWeather() {

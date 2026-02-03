@@ -7,18 +7,18 @@ export const PROJECT_ROUTES: Routes = [
       import('../projects/weather-app/weather-app').then((f) => f.WeatherAppComponent),
   },
   {
-    path: 'to-do-list',
+    path: 'recipe-box-list',
     loadComponent: () =>
-      import('../projects/to-do/to-do-list/to-do-list').then((f) => f.ToDoListComponent),
+      import('./recipe-box/recipe-box-list/recipe-box-list').then((f) => f.RecipeListComponent),
   },
   {
-    path: 'to-do-create',
+    path: 'recipe-create',
     loadComponent: () =>
-      import('../projects/to-do/to-do-list-form/to-do-list-form').then((f) => f.ToDoListForm),
+      import('./recipe-box/recipe-box-form/recipe-box-form').then((f) => f.RecipeListForm),
   },
   {
-    path: 'to-do-edit',
+    path: 'recipe-edit',
     loadComponent: () =>
-      import('../projects/to-do/to-do-list-form/to-do-list-form').then((f) => f.ToDoListForm),
+      import('./recipe-box/recipe-box-form/recipe-box-form').then((f) => f.RecipeListForm),
   },
 ];

@@ -3,6 +3,7 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -41,6 +42,11 @@ export class AuthService {
 
   logout(): Observable<void> {
     const promise = signOut(this.firebaseAuth);
+    return from(promise);
+  }
+
+  sendPasswordResetEmail(email: string): Observable<void> {
+    const promise = sendPasswordResetEmail(this.firebaseAuth, email).then(() => {});
     return from(promise);
   }
 }

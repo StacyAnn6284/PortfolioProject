@@ -10,13 +10,13 @@ import {
   update,
 } from '@angular/fire/database';
 import { firstValueFrom, Observable, filter, map } from 'rxjs';
-import { ToDo } from '../models/to-do.model';
+import { Recipe } from '../models/recipe-box.model';
 import { authState, Auth, User } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ToDoService {
+export class RecipeService {
   constructor(
     private db: Database,
     private auth: Auth,
@@ -33,22 +33,22 @@ export class ToDoService {
     return user;
   }
 
-  async getAllTodos(): Promise<Observable<ToDo[]>> {
+  async getAllRecipes(): Promise<Observable<Recipe[]>> {
     const uid = await this.getUserUid();
-    const todosRef = ref(this.db, `users/${uid}/todos`);
+    const recipesRef = ref(this.db, `users/${uid}/recipes`);
 
     return new Observable((observer) => {
       const unsubscribe = onValue(
-        todosRef,
+        recipesRef,
         (snapshot: DataSnapshot) => {
           const data = snapshot.val();
-          const todos: ToDo[] = [];
+          const recipes: Recipe[] = [];
           if (data) {
             Object.keys(data).forEach((key) => {
-              todos.push({ ...data[key], id: key });
+              recipes.push({ ...data[key], id: key });
             });
           }
-          observer.next(todos);
+          observer.next(recipes);
         },
         (error) => {
           observer.error(error);
@@ -58,30 +58,30 @@ export class ToDoService {
     });
   }
 
-  async addTodo(todo: ToDo) {
+  async addRecipe(recipe: Recipe) {
     const uid = await this.getUserUid();
-    const todosRef = ref(this.db, `users/${uid}/todos`);
+    const recipesRef = ref(this.db, `users/${uid}/recipes`);
 
-    return push(todosRef, { ...todo, completed: false });
+    return push(recipesRef, { ...recipe, completed: false });
   }
 
-  async updateTodo(id: string, updates: Partial<ToDo>) {
+  async updateRecipe(id: string, updates: Partial<Recipe>) {
     const uid = await this.getUserUid();
-    const todoRef = ref(this.db, `users/${uid}/todos/${id}`);
-    return update(todoRef, updates);
+    const recipeRef = ref(this.db, `users/${uid}/recipes/${id}`);
+    return update(recipeRef, updates);
   }
 
-  async deleteTodo(id: string) {
+  async deleteRecipe(id: string) {
     const uid = await this.getUserUid();
-    const todoRef = ref(this.db, `users/${uid}/todos/${id}`);
-    return remove(todoRef);
+    const recipeRef = ref(this.db, `users/${uid}/recipes/${id}`);
+    return remove(recipeRef);
   }
 
-  async getTodoById(id: string): Promise<Observable<ToDo | null>> {
+  async getRecipeById(id: string): Promise<Observable<Recipe | null>> {
     const uid = await this.getUserUid();
-    const todoRef = ref(this.db, `users/${uid}/todos/${id}`);
+    const recipeRef = ref(this.db, `users/${uid}/recipes/${id}`);
     return new Observable((observer) => {
-      get(todoRef)
+      get(recipeRef)
         .then((snapshot) => {
           if (snapshot.exists()) {
             observer.next({ ...snapshot.val(), id: snapshot.key });

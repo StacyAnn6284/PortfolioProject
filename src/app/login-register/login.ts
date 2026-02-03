@@ -5,10 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'app/auth.service';
 import { GoogleButton } from 'app/google-button/google-button';
 import { FirebaseError } from '@angular/fire/app';
+import { ForgotPasswordModel } from './forgot-password/forgot-password';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, GoogleButton],
+  imports: [ReactiveFormsModule, GoogleButton, ForgotPasswordModel],
   templateUrl: './login.html',
   styleUrl: './login-register.scss',
 })

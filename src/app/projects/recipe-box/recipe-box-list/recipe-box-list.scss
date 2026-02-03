@@ -1,4 +1,4 @@
-.todo-container {
+.recipe-container {
   max-width: 480px;
   margin: 2rem auto;
   padding: 2rem;
@@ -18,12 +18,12 @@ button {
 button:hover {
   background: #2f3a50;
 }
-.todo-container > button {
+.recipe-container > button {
   margin-left: auto;
   width: auto; /* optional */
 }
 
-.todo-card {
+.recipe-card {
   background: #f7f9fc;
   border: 1px solid #e3e7ef;
   border-radius: 10px;
@@ -32,37 +32,37 @@ button:hover {
   transition: background 0.2s ease;
 }
 
-.todo-card:hover {
+.recipe-card:hover {
   background: #eef2f7;
 }
 
-.todo-header {
+.recipe-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.todo-header h2 {
+.recipe-header h2 {
   margin: 0;
   font-size: 1.4rem;
   font-weight: 700;
 }
 
-.todo-header h3 {
+.recipe-header h3 {
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: #55627a;
 }
 
-.todo-details {
+.recipe-details {
   margin-top: 0.75rem;
   font-size: 1rem;
   font-weight: 400;
   color: #4a5568;
 }
 
-.todo-buttons {
+.recipe-buttons {
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
