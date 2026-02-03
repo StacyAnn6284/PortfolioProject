@@ -6,6 +6,7 @@ body {
 body {
   margin: 0;
   background: linear-gradient(to top, #e6e0d8 0%, #fbfaf8 75%);
+  font-family: 'Merriweather', serif;
 }
 
 button {
@@ -25,3 +26,5 @@ button {
   height: 35px;
   width: 35px;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');

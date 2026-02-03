@@ -1,73 +1,78 @@
-.hero-wrapper {
-  min-height: 100vh;
+.container {
+  position: relative;
   display: flex;
+  flex-direction: column; // mobile: stacked
   justify-content: center;
   align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  height: auto;
 }
 
-.hero {
-  position: relative;
-  width: 100%;
-  max-width: 875px;
-  aspect-ratio: 4 / 5;
-  background-image: url('/assets/images/mobileBackground.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top center;
+.headshot {
+  width: 60%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-image: url('../../assets/images/homePage.jpeg');
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
 }
 
 .content {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 275px;
+  font-family: 'Merriweather';
+  width: 90%;
+  color: #3d4b66;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
 }
 
-.content-header {
-  font-family: 'Monaco';
-  font-style: italic;
-  font-size: 15px;
-}
+@media (min-width: 450px) {
+  .content {
+    width: 80%;
 
-.content-paragraph {
-  font-family: 'Andale Mono', monospace;
-  font-size: 0.7rem;
-  margin-top: 0.75rem;
+    h1 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
 }
 
 @media (min-width: 700px) {
-  .content {
-    width: 425px;
+  .container {
+    flex-direction: row;
+    height: 100vh;
+    gap: 2rem;
   }
 
-  .mobileBackground {
-    width: 650px;
-  }
-  .content-header {
-    font-size: 24px;
-  }
-
-  .content-paragraph {
-    font-size: 16px;
-  }
-}
-
-@media (min-width: 900px) {
-  .hero {
-    background-image: url('/assets/images/backgroundFinalTransparent.png');
+  .headshot {
+    width: 30%;
   }
 
   .content {
-    max-width: 380px;
-  }
+    width: 35%;
 
-  .content-header {
-    font-size: 24px;
-  }
+    h1 {
+      font-size: 40px;
+    }
 
-  .content-paragraph {
-    font-size: 1rem;
+    p {
+      font-size: 22px;
+    }
   }
 }
