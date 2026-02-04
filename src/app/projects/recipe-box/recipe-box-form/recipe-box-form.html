@@ -1,6 +1,6 @@
 <div class="form-container">
   <h4>Add a Recipe Item</h4>
-  <form [formGroup]="recipeForm" (submit)="onSubmit()">
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
     <label for="name">Recipe Name</label>
     <input type="text" formControlName="name" />
 
@@ -11,7 +11,7 @@
     <input type="text" formControlName="url" />
     <label for="text">Text</label>
     <input type="text" class="recipe-form-task" formControlName="text" />
-    <div>
+    <div class="button-row">
       <button type="submit">Save Changes</button>
       <button type="button" (click)="handleCancel()">Cancel</button>
     </div>
