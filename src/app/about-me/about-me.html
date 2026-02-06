@@ -36,10 +36,11 @@
       <p>If you're curious about my work or want to collaborate, I'd love to connect.</p>
     </div>
     <div
-      style="width: 500px; height: 280px; margin: 0 auto"
+      [style.width.px]="slideShowWidth"
+      style="height: 280px; margin: 0 auto"
       class="carousel-section section-card photo-float"
     >
-      <app-photo-slider [parentWidth]="500" [slides]="slides" />
+      <app-photo-slider [parentWidth]="slideShowWidth" [slides]="slides" />
     </div>
     <div class="contact-section section-card">
       <h3>Contact Me</h3>

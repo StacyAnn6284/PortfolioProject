@@ -4,7 +4,6 @@
   padding: 2rem 1.5rem;
   color: #3d4b66;
   font-family: 'Merriweather', serif;
-  width: 100%;
 
   h1 {
     font-size: 2rem;
@@ -25,7 +24,6 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas: 'p1' 'p23' 'slider' 'contact';
-  gap: 2rem;
 }
 
 .about-grid > * {
@@ -39,8 +37,7 @@
   grid-area: p23;
 }
 .carousel-section {
-  display: none;
-  width: 100%;
+  width: 250px;
   grid-area: slider;
 }
 .contact-section {
@@ -58,6 +55,8 @@
 }
 
 .contact-section {
+  margin-top: 2rem;
+
   h3 {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -89,7 +88,7 @@
 
 @media (min-width: 900px) {
   .about-grid {
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 50% 50%;
     grid-template-areas:
       'p1 p1'
       'p23 slider'
