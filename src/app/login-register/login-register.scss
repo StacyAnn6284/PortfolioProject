@@ -49,6 +49,11 @@ button {
   width: 300px;
 }
 
+.sign-in-container {
+  display: flex;
+  align-items: center;
+}
+
 .error-container {
   margin: 1.5rem auto;
   padding: 1rem 1.25rem;

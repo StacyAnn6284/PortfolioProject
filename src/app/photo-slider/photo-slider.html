@@ -1,0 +1,24 @@
+<div class="slide-container">
+  <div class="arrow left" (click)="goToPrev()">
+    <app-chevron-left />
+  </div>
+  <div class="arrow right" (click)="goToNext()">
+    <app-chevron-right />
+  </div>
+  <div class="slides-overflow">
+    <div class="slide-images" [ngStyle]="slidesContainer()">
+      @for (slide of slides(); track $index) {
+        <div class="slide" [ngStyle]="getSlide(slide)">
+          <p class="slide-title">{{ slide.title }}</p>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="slide-dots">
+    @for (slide of slides(); track $index) {
+      <div class="dot" [class.active]="$index === currentIndex()" (click)="goToSlide($index)">
+        ●
+      </div>
+    }
+  </div>
+</div>

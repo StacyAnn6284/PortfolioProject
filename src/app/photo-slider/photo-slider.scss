@@ -1,0 +1,101 @@
+.slide-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.slides-overflow {
+  overflow: hidden;
+  height: 100%;
+}
+
+.slide-images {
+  display: flex;
+  height: 100%;
+  transition: transform ease-in-out 0.5s;
+}
+.slide-wrapper {
+  width: 100%; // matches the slide width
+  flex-shrink: 0; // prevents collapsing
+  position: relative; // allows absolute title if you want
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.slide-title {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 65%;
+  padding: 0.3rem 0.5rem;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 0 0 8px 8px;
+}
+
+.slide-dots {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  margin: 0 3 px;
+  cursor: pointer;
+  font-size: 25px;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.dot.active {
+  color: #aaa;
+}
+
+.arrow {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-50%) scale(1.05);
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+    color: #3d4b66;
+  }
+}
+.arrow.left {
+  left: 2px;
+}
+.arrow.right {
+  right: 2px;
+}

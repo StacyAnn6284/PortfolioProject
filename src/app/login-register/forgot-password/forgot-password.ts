@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/auth.service';
@@ -11,21 +11,28 @@ import { FirebaseError } from 'firebase/app';
   imports: [ReactiveFormsModule],
 })
 export class ForgotPasswordModel implements OnInit {
-  forgotPasswordForm: FormGroup;
+  @Output() public closePasswordEvent = new EventEmitter<void>();
+
+  private readonly _router = inject(Router);
+  forgotPasswordForm!: FormGroup;
   errorMessage: string | null = null;
   successMessage: string | null = null;
-  private readonly _router = inject(Router);
-  private readonly authService = inject(AuthService);
-  fb = inject(FormBuilder);
 
-  constructor() {
-    this.forgotPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-    });
-  }
+  protected readonly closePassword = () => {
+    this.closePasswordEvent.emit();
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+  ) {}
   ngOnInit(): void {
     this.errorMessage = null;
     this.successMessage = null;
+
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
 
   onSubmit(): void {
@@ -42,7 +49,7 @@ export class ForgotPasswordModel implements OnInit {
     this.authService.sendPasswordResetEmail(email).subscribe({
       next: () => {
         this.successMessage =
-          'A password reset email has been sent to your inbox. Please check it!';
+          'If an account exists for that email address, a password reset link has been sent to it.';
         this.forgotPasswordForm.reset();
       },
       error: (err: FirebaseError) => {

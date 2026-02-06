@@ -18,7 +18,7 @@ import { RecipeService } from '../services/recipe-box.service';
   templateUrl: './recipe-box-form.html',
   styleUrl: './recipe-box-form.scss',
 })
-export class RecipeListForm {
+export class RecipeListForm implements OnInit {
   private readonly _router = inject(Router);
   private readonly _route = inject(ActivatedRoute);
   public task: Recipe | null = null;

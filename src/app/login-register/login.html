@@ -1,27 +1,35 @@
-<h1>Login</h1>
+<div>
+  <h1>Login</h1>
 
-@if (errorMessage) {
-  <div class="error-container">
-    <h3 class="error">{{ errorMessage }}</h3>
-    <span>Still need to register? <button (click)="redirectToRegister()">Click here</button></span>
-  </div>
-}
+  @if (errorMessage) {
+    <div class="error-container">
+      <h3 class="error">{{ errorMessage }}</h3>
+      <span
+        >Still need to register? <button (click)="redirectToRegister()">Click here</button></span
+      >
+    </div>
+  }
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <input type="text" placeholder="Email" formControlName="email" />
-  </div>
-  <div>
-    <input type="password" placeholder="Password" formControlName="password" />
-  </div>
-  <div>
-    <button type="submit">Sign In</button>
-  </div>
-
-  <div (click)="loginWithGoogle()">
-    <app-google-button />
-  </div>
-  <!-- <div>
-    <app-forgot-password />
-  </div> -->
-</form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <input type="text" placeholder="Email" formControlName="email" />
+    </div>
+    <div>
+      <input type="password" placeholder="Password" formControlName="password" />
+    </div>
+    <div (click)="openPasswordModal()">
+      <span class="hover-button">Forgot Password</span>
+    </div>
+    <div class="sign-in-container">
+      <button type="submit">Sign In</button>
+      <div (click)="loginWithGoogle()">
+        <app-google-button />
+      </div>
+    </div>
+  </form>
+  @if (showPasswordReset()) {
+    <div [ngClass]="{ 'modal-overlay': showPasswordReset() }">
+      <app-forgot-password (closePasswordEvent)="closePasswordModal()" />
+    </div>
+  }
+</div>

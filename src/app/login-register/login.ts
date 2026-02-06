@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'app/auth.service';
 import { GoogleButton } from 'app/google-button/google-button';
 import { FirebaseError } from '@angular/fire/app';
+import { ForgotPasswordModel } from './forgot-password/forgot-password';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, GoogleButton],
+  imports: [ReactiveFormsModule, GoogleButton, ForgotPasswordModel, NgClass],
   templateUrl: './login.html',
   styleUrl: './login-register.scss',
 })
@@ -19,6 +21,9 @@ export class LoginComponent {
   http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService);
+  showPasswordReset = linkedSignal(() => false);
+  public readonly openPasswordModal = () => this.showPasswordReset.set(true);
+  public readonly closePasswordModal = () => this.showPasswordReset.set(false);
 
   form = this.fb.nonNullable.group({
     email: ['', Validators.required],
