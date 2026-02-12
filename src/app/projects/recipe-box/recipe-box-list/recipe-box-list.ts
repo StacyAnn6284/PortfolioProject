@@ -6,12 +6,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../models/recipe-box.model';
 import { RecipeService } from '../services/recipe-box.service';
 import { AuthService } from 'app/auth.service';
+import { ProjectArrowComponent } from 'app/projects/project-arrow/project-arrow';
 
 @Component({
   selector: 'app-recipe-box-list',
   templateUrl: './recipe-box-list.html',
   styleUrl: './recipe-box-list.scss',
-  imports: [CommonModule],
+  imports: [CommonModule, ProjectArrowComponent],
 })
 export class RecipeListComponent implements OnInit {
   private readonly _router = inject(Router);
@@ -58,5 +59,9 @@ export class RecipeListComponent implements OnInit {
 
   showForm() {
     this._router.navigate(['/recipe-create'], { relativeTo: this._route });
+  }
+
+  directToLogin() {
+    this._router.navigate(['/login'], { relativeTo: this._route });
   }
 }

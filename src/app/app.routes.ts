@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home';
 import { PROJECT_ROUTES } from './projects/projects.routes';
 
 export const routes: Routes = [
@@ -7,8 +6,7 @@ export const routes: Routes = [
   { path: 'about', loadComponent: () => import('./about-me/about-me').then((m) => m.AboutMe) },
   {
     path: 'projects',
-    loadComponent: () =>
-      import('./projects/project-view/project-view').then((m) => m.ProjectViewPage),
+    loadChildren: () => PROJECT_ROUTES,
   },
   {
     path: 'login',
@@ -18,6 +16,6 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./login-register/register').then((m) => m.RegisterComponent),
   },
-  ...PROJECT_ROUTES,
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -2,12 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WeatherApiService } from './services/weather-api.service';
 import { ForecastPeriod } from './models/weatherPeriod.model';
+import { ProjectArrowComponent } from '../project-arrow/project-arrow';
 
 @Component({
   selector: 'app-weather-app',
   templateUrl: 'weather-app.html',
   styleUrl: 'weather-app.scss',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ProjectArrowComponent],
 })
 export class WeatherAppComponent implements OnInit {
   public weatherSearchForm!: FormGroup;

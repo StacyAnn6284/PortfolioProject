@@ -1,5 +1,6 @@
+<app-project-arrow />
 @if (!loggedIn()) {
-  <h1>Please log in to create your List</h1>
+  <span class="recipe-login" (click)="directToLogin()">Please log in to create your List</span>
 }
 <div class="recipe-container" *ngIf="recipeList$ | async as recipes">
   <h1>Recipe Box</h1>

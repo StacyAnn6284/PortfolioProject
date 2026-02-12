@@ -1,0 +1,19 @@
+.button-container {
+  position: relative;
+  left: 30px;
+  top: 30px;
+  padding-bottom: 30px;
+}
+
+.project-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 125px;
+
+  .project-arrow {
+    .icons {
+      height: 25px;
+    }
+  }
+}

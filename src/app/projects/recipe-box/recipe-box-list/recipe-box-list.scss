@@ -67,3 +67,18 @@ button:hover {
   display: flex;
   gap: 1rem;
 }
+.recipe-login {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+  padding: 10px 16px;
+  background: #f0f4ff;
+  color: #3d4b66;
+  border-radius: 6px;
+  font-family: 'Merriweather', serif;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid #d4ddf0;
+  cursor: pointer;
+}

@@ -2,6 +2,11 @@ import { Routes } from '@angular/router';
 
 export const PROJECT_ROUTES: Routes = [
   {
+    path: '',
+    loadComponent: () =>
+      import('../projects/project-view/project-view').then((f) => f.ProjectViewPage),
+  },
+  {
     path: `weather`,
     loadComponent: () =>
       import('../projects/weather-app/weather-app').then((f) => f.WeatherAppComponent),
