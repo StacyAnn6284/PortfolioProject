@@ -1,4 +1,13 @@
-<div class="nav-bar">
-  <app-site-header></app-site-header>
+<div class="page-wrapper">
+  <div class="nav-bar">
+    <app-site-header></app-site-header>
+  </div>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <app-site-footer></app-site-footer>
+  </footer>
 </div>
-<router-outlet />
