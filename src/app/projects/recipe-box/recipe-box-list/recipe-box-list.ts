@@ -7,12 +7,14 @@ import { Recipe } from '../models/recipe-box.model';
 import { RecipeService } from '../services/recipe-box.service';
 import { AuthService } from 'app/auth.service';
 import { ProjectArrowComponent } from 'app/projects/project-arrow/project-arrow';
+import { PenEditComponent } from 'core/UI/icons/pen-edit/pen-edit.component';
+import { TrashCanComponent } from 'core/UI/icons/trashcan/trashcan.component';
 
 @Component({
   selector: 'app-recipe-box-list',
   templateUrl: './recipe-box-list.html',
   styleUrl: './recipe-box-list.scss',
-  imports: [CommonModule, ProjectArrowComponent],
+  imports: [CommonModule, ProjectArrowComponent, PenEditComponent, TrashCanComponent],
 })
 export class RecipeListComponent implements OnInit {
   private readonly _router = inject(Router);
@@ -32,8 +34,6 @@ export class RecipeListComponent implements OnInit {
       })
       .catch((error) => {
         console.error('Error loading recipes:', error);
-        // Handle the error, e.g., display a message to the user
-        // this.recipeList$ = new Observable<Recipe[]>(); // Optionally, set to an empty observable on error
       });
   }
 
@@ -54,11 +54,14 @@ export class RecipeListComponent implements OnInit {
   }
 
   editTask(recipeTask: Recipe) {
-    this._router.navigate(['/recipe-edit'], { state: { task: recipeTask } });
+    this._router.navigate(['../recipe-edit'], {
+      relativeTo: this._route,
+      state: { task: recipeTask },
+    });
   }
 
   showForm() {
-    this._router.navigate(['/recipe-create'], { relativeTo: this._route });
+    this._router.navigate(['../recipe-create'], { relativeTo: this._route });
   }
 
   directToLogin() {

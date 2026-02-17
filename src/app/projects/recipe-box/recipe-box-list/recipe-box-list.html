@@ -7,16 +7,16 @@
   <h4>Total Items: {{ recipes.length }}</h4>
   @for (item of recipes; track $index) {
     <div class="recipe-card current-card">
+      <div class="recipe-icons">
+        <span (click)="editTask(item)"> <app-pen-edit /> </span>
+        <span (click)="deleteTask(item)"> <app-trashcan /> </span>
+      </div>
       <div class="recipe-header">
         <h2>{{ item.name }}</h2>
       </div>
       <div class="recipe-details">
         <h3>{{ item.url }}</h3>
         <p>{{ item.text }}</p>
-      </div>
-      <div class="recipe-buttons">
-        <button type="button" (click)="editTask(item)">Edit</button>
-        <button type="button" (click)="deleteTask(item)">Remove</button>
       </div>
     </div>
   }

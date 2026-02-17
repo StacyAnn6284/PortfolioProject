@@ -54,10 +54,10 @@ export class RecipeListForm implements OnInit {
     } else {
       this.RecipeService.addRecipe(this.recipeForm.value as Recipe);
     }
-    this._router.navigate(['/recipe-box-list'], { relativeTo: this._route });
+    this._router.navigate(['../recipe-box-list'], { relativeTo: this._route });
   }
 
   handleCancel() {
-    this._router.navigate(['/recipe-box-list'], { relativeTo: this._route });
+    this._router.navigate(['../recipe-box-list'], { relativeTo: this._route });
   }
 }

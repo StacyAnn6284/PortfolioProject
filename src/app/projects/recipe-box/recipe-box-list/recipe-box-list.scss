@@ -24,6 +24,7 @@ button:hover {
 }
 
 .recipe-card {
+  position: relative;
   background: #f7f9fc;
   border: 1px solid #e3e7ef;
   border-radius: 10px;
@@ -32,8 +33,27 @@ button:hover {
   transition: background 0.2s ease;
 }
 
-.recipe-card:hover {
-  background: #eef2f7;
+.recipe-icons {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 0.75rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.recipe-icons span {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.recipe-icons span:hover {
+  opacity: 1;
+  color: #2d3a55;
+}
+.recipe-icons span:hover svg {
+  fill: #2d3a55;
+  stroke: #2d3a55;
 }
 
 .recipe-header {
