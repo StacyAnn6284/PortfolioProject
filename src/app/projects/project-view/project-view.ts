@@ -18,4 +18,8 @@ export class ProjectViewPage {
   showWeather() {
     this._router.navigate(['weather'], { relativeTo: this._route });
   }
+
+  showCalendar() {
+    this._router.navigate(['calendar'], { relativeTo: this._route });
+  }
 }

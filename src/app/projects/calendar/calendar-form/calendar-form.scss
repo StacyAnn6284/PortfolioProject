@@ -1,0 +1,93 @@
+.form-container {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #3d4b66;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e3e7ef;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  color: #3d4b66;
+
+  h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #3d4b66;
+  }
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #3d4b66;
+  }
+
+  input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #d4d9e2;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f7f9fc;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #3d4b66;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(61, 75, 102, 0.15);
+    }
+  }
+  button {
+    width: 45%;
+    &:hover {
+      background: #2f3a50;
+    }
+  }
+
+  .meeting-form-input {
+    min-height: 120px;
+    padding: 1rem;
+    border: 1px solid #d4d9e2;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f7f9fc;
+    resize: vertical;
+    line-height: 1.4;
+    display: block;
+    &:focus {
+      outline: none;
+      border-color: #3d4b66;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(61, 75, 102, 0.15);
+    }
+  }
+
+  .error-message {
+    font-size: 0.85rem;
+    color: #c0392b;
+    margin-top: -0.5rem;
+  }
+  .button-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  .button-row button {
+    width: 40%;
+  }
+}

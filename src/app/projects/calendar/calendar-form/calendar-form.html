@@ -1,0 +1,22 @@
+<div class="form-container">
+  <h4>Create Event</h4>
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <label for="date">Date</label>
+    <input type="date" formControlName="date" />
+
+    @if (eventForm.get('date')?.hasError('required') && eventForm.get('date')?.touched) {
+      <div class="error-message">Date is required</div>
+    }
+    <label for="title">Title:</label>
+    <input type="text" formControlName="title" class="meeting-form-input" />
+    @if (eventForm.get('title')?.hasError('required') && eventForm.get('title')?.touched) {
+      <div class="error-message">Title is required</div>
+    }
+    <label for="text">Description</label>
+    <input type="text" class="meeting-form-input" formControlName="description" />
+    <div class="button-row">
+      <button type="submit">Save Changes</button>
+      <button type="button" (click)="handleCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

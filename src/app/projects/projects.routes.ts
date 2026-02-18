@@ -26,4 +26,18 @@ export const PROJECT_ROUTES: Routes = [
     loadComponent: () =>
       import('./recipe-box/recipe-box-form/recipe-box-form').then((f) => f.RecipeListForm),
   },
+  {
+    path: 'calendar',
+    loadComponent: () => import('./calendar/calendar').then((f) => f.Calendar),
+  },
+  {
+    path: 'meeting-create',
+    loadComponent: () =>
+      import('./calendar/calendar-form/calendar-form').then((f) => f.CalendarMeetingForm),
+  },
+  {
+    path: 'meeting-edit',
+    loadComponent: () =>
+      import('./calendar/calendar-form/calendar-form').then((f) => f.CalendarMeetingForm),
+  },
 ];
