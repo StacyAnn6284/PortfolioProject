@@ -1,6 +1,5 @@
 .button-container {
   position: relative;
-  left: 30px;
   top: 30px;
   padding-bottom: 30px;
 }
@@ -15,5 +14,11 @@
     .icons {
       height: 25px;
     }
+  }
+}
+
+@media (min-width: 900px) {
+  .button-container {
+    left: 30px;
   }
 }

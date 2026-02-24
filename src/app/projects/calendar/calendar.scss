@@ -15,8 +15,6 @@ h1 {
 .calendar {
   margin: 10px;
   padding: 1rem;
-  min-width: 384px;
-  width: 50%;
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -27,8 +25,7 @@ h1 {
   display: flex;
   margin-bottom: 10px;
   justify-content: space-between;
-  padding: 0 20px;
-  padding: 2rem;
+  padding: 1rem;
   font-size: 1.5rem;
 }
 
@@ -181,6 +178,13 @@ h1 {
 }
 
 @media (min-width: 900px) {
+  .calendar {
+    width: 50%;
+  }
+
+  .calendar-headline {
+    padding: 2rem;
+  }
   .calendar-container {
     flex-direction: row;
     justify-content: space-evenly;

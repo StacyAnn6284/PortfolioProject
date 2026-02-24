@@ -8,10 +8,11 @@ import { TrashCanComponent } from 'core/UI/icons/trashcan/trashcan.component';
 import { AuthService } from 'app/auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { CalendarService } from './services/calendar.service';
+import { ProjectArrowComponent } from '../project-arrow/project-arrow';
 
 @Component({
   selector: 'app-calendar',
-  imports: [NgClass, PenEditComponent, TrashCanComponent],
+  imports: [NgClass, PenEditComponent, TrashCanComponent, ProjectArrowComponent],
   templateUrl: './calendar.html',
   styleUrl: './calendar.scss',
 })
