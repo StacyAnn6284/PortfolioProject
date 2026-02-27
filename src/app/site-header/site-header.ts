@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'app/auth.service';
 import { HamburgerComponent } from 'core/UI/icons/hamburger/hamburger.component';
 import { XMarkComponent } from 'core/UI/icons/x-mark/x-mark.component';
@@ -12,8 +12,10 @@ import { XMarkComponent } from 'core/UI/icons/x-mark/x-mark.component';
   imports: [RouterModule, HamburgerComponent, XMarkComponent],
 })
 export class SiteHeaderComponent {
-  menuOpen = signal(false);
+  public menuOpen = signal(false);
   public authService = inject(AuthService);
+  private router = inject(Router);
+  public projectsOpen = signal(false);
 
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
@@ -31,6 +33,20 @@ export class SiteHeaderComponent {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  handleMenuClick() {
+    this.menuOpen.set(false);
+    this.projectsOpen.set(false);
+  }
+
+  handleProjectsClick() {
+    if (!this.projectsOpen()) {
+      this.projectsOpen.set(true);
+    } else {
+      this.router.navigate(['/projects']);
+      this.handleMenuClick();
+    }
   }
 
   constructor(private eRef: ElementRef) {}
