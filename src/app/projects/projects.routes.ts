@@ -12,6 +12,21 @@ export const PROJECT_ROUTES: Routes = [
       import('../projects/weather-app/weather-app').then((f) => f.WeatherAppComponent),
   },
   {
+    path: 'book-list',
+    loadComponent: () => 
+      import('./book-list/book-list').then((f) => f.BookListComponent),
+  },
+    {
+    path: 'book-form-create',
+    loadComponent: () => 
+      import('./book-list/book-form/book-form').then((f) => f.BookFormComponent),
+  },
+      {
+    path: 'book-form-edit',
+    loadComponent: () => 
+      import('./book-list/book-form/book-form').then((f) => f.BookFormComponent),
+  },
+  {
     path: 'recipe-box-list',
     loadComponent: () =>
       import('./recipe-box/recipe-box-list/recipe-box-list').then((f) => f.RecipeListComponent),

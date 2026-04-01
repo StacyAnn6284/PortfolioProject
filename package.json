@@ -29,6 +29,7 @@
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
+    "@tanstack/angular-query-experimental": "^5.69.0",
     "firebase": "^12.8.0",
     "luxon": "^3.7.2",
     "moment": "^2.30.1",

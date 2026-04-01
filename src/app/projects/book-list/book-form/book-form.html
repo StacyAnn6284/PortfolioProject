@@ -1,0 +1,19 @@
+<div class="form-container">
+  <h4>Add a Book</h4>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <label for="book">Book Title</label>
+    <input type="text" formControlName="book" />
+
+    @if (bookForm.get('book')?.hasError('required') && bookForm.get('book')?.touched) {
+      <div class="error-message">Book Title is required</div>
+    }
+    <label for="author">Author:</label>
+    <input type="text" formControlName="author" />
+    <label for="notes">Notes:</label>
+    <input type="text" class="book-form-task" formControlName="notes" />
+    <div class="button-row">
+      <button type="submit">Save Changes</button>
+      <button type="button" (click)="handleCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

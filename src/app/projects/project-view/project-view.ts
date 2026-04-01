@@ -22,4 +22,8 @@ export class ProjectViewPage {
   showCalendar() {
     this._router.navigate(['calendar'], { relativeTo: this._route });
   }
+
+  showBookList() {
+    this._router.navigate(['book-list'], {relativeTo: this._route})
+  }
 }

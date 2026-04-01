@@ -1,0 +1,25 @@
+<app-project-arrow />
+@if (bookListQuery.isLoading()){
+    <p>page loading ... </p>
+}
+<div class="book-container">
+    <h1>Book List</h1>
+    @for (book of bookList(); track book) {
+        <div class="book-card">
+        <div class="book-icons">
+            <span (click)="deleteBook(book.id ?? 0)"> <app-trashcan /> </span>
+            <span (click)="editBook(book)"><app-pen-edit /></span>
+        </div>
+        <div class="book-header">
+            <h2>{{book.book}}</h2>
+        </div>
+        <div class="book-details">
+            <h3>By: {{book.author}}</h3>
+            <p>{{book.status}}</p>
+            <p>Notes: {{book.notes}}</p>
+        </div>
+
+        </div>
+        }
+         <button type="button" (click)="showForm()">Add Book</button>
+</div>
