@@ -40,10 +40,9 @@ export class BookFormComponent implements OnInit{
         this.book = history.state.book ?? null;
 
         this.bookForm = this.fb.group({
-            // id: new FormControl(this.book?.id ?? null),
             book: new FormControl(this.book?.book ?? '', [Validators.required, Validators.maxLength(100)]),
             author: new FormControl(this.book?.author ?? '',  [Validators.required, Validators.maxLength(100)]),
-            status: new FormControl(this.book?.status ?? ''),
+            status: new FormControl(this.book?.status ?? 'not started'),
             notes: new FormControl(this.book?.notes ?? '', [Validators.maxLength(500)])
         })
     }

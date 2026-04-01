@@ -27,4 +27,8 @@ createBook(book:Book) {
  return this.http.post<Book>(this.url, book)
 }
 
+deleteBook(id: number) {
+ return this.http.delete<Book>(`${this.url}/${id}`)   
+}
+
 }

@@ -4,7 +4,7 @@ import { Book } from "./models/book-model";
 import { ProjectArrowComponent } from "../project-arrow/project-arrow";
 import { PenEditComponent } from "core/UI/icons/pen-edit/pen-edit.component";
 import { TrashCanComponent } from "core/UI/icons/trashcan/trashcan.component";
-import { injectQuery } from '@tanstack/angular-query-experimental';
+import { injectMutation, injectQuery, QueryClient } from '@tanstack/angular-query-experimental';
 import { BookService } from "./services/book.service";
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class BookListComponent {
+          private readonly _queryClient = inject(QueryClient);
     private readonly _router = inject(Router);
   private readonly _route = inject(ActivatedRoute);
     private bookService = inject(BookService)
@@ -26,9 +27,14 @@ export class BookListComponent {
         queryFn: () =>  this.bookService.getAllBooks()
      }));
 
-
-
     public bookList = computed(() => this.bookListQuery.data() ?? [])
+
+    private readonly _bookDeleteMutation = injectMutation(() => ({
+        mutationFn: (id: number) => this.bookService.deleteBook(id).toPromise(),
+        onSuccess: () => {
+            this._queryClient.invalidateQueries({ queryKey: ['book-list'] });
+        }
+    }))
 
     editBook(book: Book) {
         this._router.navigate(['../book-form-edit'], {
@@ -42,6 +48,10 @@ export class BookListComponent {
     this._router.navigate(['../book-form-create'], { relativeTo: this._route });
   }
     deleteBook(bookId: number) {
-        console.log(bookId)
+       this._bookDeleteMutation.mutate(bookId, {
+        onSuccess: () => {
+            console.log("book successfully deleted")
+        }
+       })
     }
 }
