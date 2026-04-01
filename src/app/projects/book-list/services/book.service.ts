@@ -9,14 +9,14 @@ export class BookService{
   private url = "https://portfoliobackend-production.up.railway.app/api/book"
   private http = inject(HttpClient)
 
-async getAllBooks() : Promise<Book[]> {
-   const data = await fetch(this.url).then(res => res.json()).then(json => json.data);
-    return await data ?? [];
+ getAllBooks() : Promise<Book[]> {
+   const data =  fetch(this.url).then(res => res.json()).then(json => json.data);
+    return data ?? [];
 }
 
-async getBookById(id: Number) : Promise<Book> {
-    const data = await fetch(`${this.url}/${id}`).then(res => res.json().then(json => json.data))
-    return await data ?? {}
+ getBookById(id: Number) : Promise<Book> {
+    const data = fetch(`${this.url}/${id}`).then(res => res.json().then(json => json.data))
+    return  data ?? {}
 }
 
 editBook(book: Book) {
