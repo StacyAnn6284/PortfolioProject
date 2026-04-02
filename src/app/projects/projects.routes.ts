@@ -13,33 +13,15 @@ export const PROJECT_ROUTES: Routes = [
   },
   {
     path: 'book-list',
-    loadComponent: () => 
-      import('./book-list/book-list').then((f) => f.BookListComponent),
+    loadComponent: () => import('./book-list/book-list').then((f) => f.BookListComponent),
   },
-    {
+  {
     path: 'book-form-create',
-    loadComponent: () => 
-      import('./book-list/book-form/book-form').then((f) => f.BookFormComponent),
+    loadComponent: () => import('./book-list/book-form/book-form').then((f) => f.BookFormComponent),
   },
-      {
+  {
     path: 'book-form-edit',
-    loadComponent: () => 
-      import('./book-list/book-form/book-form').then((f) => f.BookFormComponent),
-  },
-  {
-    path: 'recipe-box-list',
-    loadComponent: () =>
-      import('./recipe-box/recipe-box-list/recipe-box-list').then((f) => f.RecipeListComponent),
-  },
-  {
-    path: 'recipe-create',
-    loadComponent: () =>
-      import('./recipe-box/recipe-box-form/recipe-box-form').then((f) => f.RecipeListForm),
-  },
-  {
-    path: 'recipe-edit',
-    loadComponent: () =>
-      import('./recipe-box/recipe-box-form/recipe-box-form').then((f) => f.RecipeListForm),
+    loadComponent: () => import('./book-list/book-form/book-form').then((f) => f.BookFormComponent),
   },
   {
     path: 'calendar',
