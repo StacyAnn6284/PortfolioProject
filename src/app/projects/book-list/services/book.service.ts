@@ -9,27 +9,16 @@ export class BookService {
   private http = inject(HttpClient);
 
   getAllBooks(filter: string, searchTerm: string): Promise<Book[]> {
-    if (filter) {
-    const data = fetch(`${this.url}?filter=${filter}`)
-      .then((res) => res.json())
-      .then((json) => json.data);
-    return data ?? [];
-    }
-    if (searchTerm) {
-      const data = fetch(`${this.url}?search=${searchTerm}`)
-      .then((res) => res.json())
-      .then((json) => json.data);
-    return data ?? [];
-    }
-          const data = fetch(this.url)
-        .then((res) => res.json())
-        .then((json) => json.data);
-      return data ?? [];
+    const url = filter ? `${this.url}?filter=${filter}` 
+    : searchTerm ? `${this.url}?search=${searchTerm}` : this.url
+    return fetch(url).then((res) => res.json()).then((json) => {
+      const data = json.data ?? [];
+      return [...data].sort((a, b) => a.id - b.id)
+    });
   }
 
   getBookById(id: Number): Promise<Book> {
-    const data = fetch(`${this.url}/${id}`).then((res) => res.json().then((json) => json.data));
-    return data ?? {};
+    return fetch(`${this.url}/${id}`).then((res) => res.json().then((json) => json.data ?? {}));
   }
 
   editBook(book: Book) {
@@ -43,4 +32,5 @@ export class BookService {
   deleteBook(id: number) {
     return this.http.delete<Book>(`${this.url}/${id}`);
   }
+
 }

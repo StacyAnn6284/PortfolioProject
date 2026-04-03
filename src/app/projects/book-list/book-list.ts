@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchIconComponent } from 'core/UI/icons/search/search.component';
 import { DeleteConfirmComponent } from 'core/components/delete-confirm/delete-confirm';
 import { ChevronLeftComponent } from 'core/UI/icons/chevron-left/chevron-left.component';
+import { StarRatingComponent } from 'core/components/star-rating/star-rating';
 
 @Component({
   selector: 'app-book-list',
@@ -25,6 +26,7 @@ import { ChevronLeftComponent } from 'core/UI/icons/chevron-left/chevron-left.co
     SearchIconComponent,
     DeleteConfirmComponent,
     ChevronLeftComponent,
+    StarRatingComponent,
   ],
 })
 export class BookListComponent {
@@ -48,6 +50,13 @@ export class BookListComponent {
 
   private readonly _bookDeleteMutation = injectMutation(() => ({
     mutationFn: (id: number) => this.bookService.deleteBook(id).toPromise(),
+    onSuccess: () => {
+      this._queryClient.invalidateQueries({ queryKey: ['book-list'] });
+    },
+  }));
+
+  private readonly _bookRatingUpdateMutation = injectMutation(() => ({
+    mutationFn: (target: Book) => this.bookService.editBook(target).toPromise(),
     onSuccess: () => {
       this._queryClient.invalidateQueries({ queryKey: ['book-list'] });
     },
@@ -81,6 +90,16 @@ export class BookListComponent {
     this._bookDeleteMutation.mutate(this.activeBook().id!, {
       onSuccess: () => {
         this.showDeleteConfirm.set(false);
+      },
+    });
+  }
+
+  onRatingUpdated(event: { book: Book; rating: number }) {
+    const updatedBook = { ...event.book, rating: event.rating };
+    console.log(event.rating);
+    this._bookRatingUpdateMutation.mutate(updatedBook, {
+      onSuccess: () => {
+        console.log('Rating successfully updated.');
       },
     });
   }

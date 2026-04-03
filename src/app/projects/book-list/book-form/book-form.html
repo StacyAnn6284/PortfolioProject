@@ -12,11 +12,16 @@
     <label for="status">Read Status: </label>
     <select>
       <option>not started</option>
-        <option>in progress</option>
-          <option>completed</option>
+      <option>in progress</option>
+      <option>completed</option>
     </select>
     <label for="notes">Notes:</label>
     <input type="text" class="book-form-task" formControlName="notes" />
+    <app-star-rating
+      [book]="this.book!"
+      (newBookRatingEvent)="setRating($event)"
+      (updateRatingEvent)="setRating($event.rating)"
+    />
     <div class="button-row">
       <button type="submit">Save Changes</button>
       <button type="button" (click)="handleCancel()">Cancel</button>

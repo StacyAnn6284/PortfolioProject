@@ -1,0 +1,20 @@
+.rating {
+  display: flex;
+  gap: 4px;
+  margin-top: 0.5rem;
+}
+
+.star {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #c5cbd8;
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: #f5b301;
+}
+
+.star:hover {
+  color: #f5b301;
+}

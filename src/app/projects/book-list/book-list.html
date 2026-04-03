@@ -4,12 +4,17 @@
 }
 <div class="book-container">
   <div class="book-list-header">
-  <h1>Book List</h1>
-  <div class="search-container">
-  <input type="text" #search [(ngModel)]="searchTerm" placeholder="Search by author or title..."/>
-  <app-search-icon class="search-icon" />
-  </div>
+    <h1>Book List</h1>
+    <div class="search-container">
+      <input
+        type="text"
+        #search
+        [(ngModel)]="searchTerm"
+        placeholder="Search by author or title..."
+      />
+      <app-search-icon class="search-icon" />
     </div>
+  </div>
   <label for="status">Read Status: </label>
 
   <select [(ngModel)]="statusFilter">
@@ -19,7 +24,7 @@
     <option value="completed">Completed</option>
   </select>
   @for (book of bookList(); track book.id) {
-    <div class="book-card"  (click)="toggleExpanded(book.id!)">
+    <div class="book-card" (click)="toggleExpanded(book.id!)">
       <div class="book-icons">
         <span (click)="deleteBook(book)"> <app-trashcan /> </span>
         <span (click)="editBook(book)"><app-pen-edit /></span>
@@ -27,25 +32,29 @@
       <div class="book-header">
         <h2>{{ book.title }}</h2>
 
-
         <span class="chevron" [class.open]="expanded()[book.id!]">
           <app-chevron-left />
         </span>
       </div>
-        @if (expanded()[book.id!]) {  
-                <div class="book-details">
-        <h3>By: {{ book.author }}</h3>        
-        <p>Status: {{ book.status }}</p>
-        <p>{{ book.notes }}</p>
-              </div>
-        }
-
+      @if (expanded()[book.id!]) {
+        <div class="book-details">
+          <h3>By: {{ book.author }}</h3>
+          <p>Status: {{ book.status }}</p>
+          <p>{{ book.notes }}</p>
+          <app-star-rating
+            [book]="book"
+            (updateRatingEvent)="onRatingUpdated($event)"
+          ></app-star-rating>
+        </div>
+      }
     </div>
   }
   <button type="button" (click)="showForm()">Add Book</button>
 </div>
 @if (showDeleteConfirm()) {
-  <app-delete-confirm [book]="activeBook()"
-  (closeDeleteEvent)="showDeleteConfirm.set(false)" 
-  (confirmDeleteEvent)="handleDelete()"/>
+  <app-delete-confirm
+    [book]="activeBook()"
+    (closeDeleteEvent)="showDeleteConfirm.set(false)"
+    (confirmDeleteEvent)="handleDelete()"
+  />
 }

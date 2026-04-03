@@ -1,0 +1,11 @@
+<div class="rating">
+  @for (star of [1, 2, 3, 4, 5]; track star) {
+    <span
+      class="star"
+      [class.filled]="star <= this.star()"
+      (click)="updateRating(book, star); $event.stopPropagation()"
+    >
+      <app-filled-star-icon />
+    </span>
+  }
+</div>
