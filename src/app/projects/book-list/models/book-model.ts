@@ -1,6 +1,6 @@
 export class Book {
     id?: number = 0
-    book: string = ''
+    title: string = ''
     author: string = ''
     status?: string = ''
     notes?: string = ''

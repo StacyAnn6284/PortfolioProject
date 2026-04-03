@@ -1,10 +1,10 @@
 <div class="form-container">
   <h4>Add a Book</h4>
   <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-    <label for="book">Book Title</label>
-    <input type="text" formControlName="book" />
+    <label for="title">Book Title</label>
+    <input type="text" formControlName="title" />
 
-    @if (bookForm.get('book')?.hasError('required') && bookForm.get('book')?.touched) {
+    @if (bookForm.get('title')?.hasError('required') && bookForm.get('title')?.touched) {
       <div class="error-message">Book Title is required</div>
     }
     <label for="author">Author:</label>
