@@ -59,8 +59,9 @@ button:hover {
 
 .book-header {
   display: flex;
-  justify-content: space-between;
+   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 .book-header h2 {
@@ -87,4 +88,45 @@ button:hover {
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
+}
+
+.search-container {
+ position: relative;
+ display: inline-block;
+}
+
+.search-container input {
+  padding-right: 35px;
+  height: 32px;
+  font-size: 14px;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; 
+}
+
+.book-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+  font-size: 18px;
+  margin-top: 2rem;
+  transform: rotate(90deg)
+}
+
+.chevron.open {
+  transform: rotate(270deg) translateX(-3rem);;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-4px); }
+  to { opacity: 1; transform: translateX(0); }
 }

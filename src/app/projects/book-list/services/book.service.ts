@@ -8,17 +8,23 @@ export class BookService {
   private url = 'https://portfoliobackend-production.up.railway.app/api/books';
   private http = inject(HttpClient);
 
-  getAllBooks(filter: string): Promise<Book[]> {
-    if (filter === '' || filter === 'All') {
-      const data = fetch(this.url)
-        .then((res) => res.json())
-        .then((json) => json.data);
-      return data ?? [];
-    }
+  getAllBooks(filter: string, searchTerm: string): Promise<Book[]> {
+    if (filter) {
     const data = fetch(`${this.url}?filter=${filter}`)
       .then((res) => res.json())
       .then((json) => json.data);
     return data ?? [];
+    }
+    if (searchTerm) {
+      const data = fetch(`${this.url}?search=${searchTerm}`)
+      .then((res) => res.json())
+      .then((json) => json.data);
+    return data ?? [];
+    }
+          const data = fetch(this.url)
+        .then((res) => res.json())
+        .then((json) => json.data);
+      return data ?? [];
   }
 
   getBookById(id: Number): Promise<Book> {

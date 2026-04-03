@@ -8,25 +8,40 @@ import { injectMutation, injectQuery, QueryClient } from '@tanstack/angular-quer
 import { BookService } from './services/book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { SearchIconComponent } from 'core/UI/icons/search/search.component';
+import { DeleteConfirmComponent } from 'core/components/delete-confirm/delete-confirm';
+import { ChevronLeftComponent } from 'core/UI/icons/chevron-left/chevron-left.component';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.html',
   styleUrl: './book-list.scss',
-  standalone: true,
-  imports: [CommonModule, ProjectArrowComponent, PenEditComponent, TrashCanComponent, FormsModule],
+  imports: [
+    CommonModule,
+    ProjectArrowComponent,
+    PenEditComponent,
+    TrashCanComponent,
+    FormsModule,
+    SearchIconComponent,
+    DeleteConfirmComponent,
+    ChevronLeftComponent,
+  ],
 })
 export class BookListComponent {
   private readonly _queryClient = inject(QueryClient);
   private readonly _router = inject(Router);
   private readonly _route = inject(ActivatedRoute);
   private bookService = inject(BookService);
+  public showDeleteConfirm = signal(false);
+  public activeBook = signal<Book>(new Book());
+  public searchTerm = signal('');
+  public statusFilter = signal('');
 
-  statusFilter = signal('');
+  public expanded = signal<Record<number, boolean>>({});
 
   bookListQuery = injectQuery(() => ({
-    queryKey: ['book-list', this.statusFilter()],
-    queryFn: () => this.bookService.getAllBooks(this.statusFilter()),
+    queryKey: ['book-list', this.statusFilter(), this.searchTerm()],
+    queryFn: () => this.bookService.getAllBooks(this.statusFilter(), this.searchTerm()),
   }));
 
   public bookList = computed(() => this.bookListQuery.data() ?? []);
@@ -37,6 +52,14 @@ export class BookListComponent {
       this._queryClient.invalidateQueries({ queryKey: ['book-list'] });
     },
   }));
+
+  toggleExpanded(bookId: number) {
+    const current = this.expanded();
+    this.expanded.set({
+      ...current,
+      [bookId]: !current[bookId],
+    });
+  }
 
   editBook(book: Book) {
     this._router.navigate(['../book-form-edit'], {
@@ -49,10 +72,15 @@ export class BookListComponent {
   showForm() {
     this._router.navigate(['../book-form-create'], { relativeTo: this._route });
   }
-  deleteBook(bookId: number) {
-    this._bookDeleteMutation.mutate(bookId, {
+  deleteBook(book: Book) {
+    this.showDeleteConfirm.set(true);
+    this.activeBook.set(book);
+  }
+
+  handleDelete() {
+    this._bookDeleteMutation.mutate(this.activeBook().id!, {
       onSuccess: () => {
-        console.log('book successfully deleted');
+        this.showDeleteConfirm.set(false);
       },
     });
   }
