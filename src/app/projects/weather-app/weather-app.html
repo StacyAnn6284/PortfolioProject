@@ -22,6 +22,7 @@
       <div class="forecastPeriod-card" (click)="toggle(i)">
         <div class="forecastPeriod-header">
           <h3>{{ forecastPeriod.name }}</h3>
+          <img [src]="forecastPeriod.icon" />
           <span class="temp">{{ forecastPeriod.temperature }}°F</span>
         </div>
 
@@ -40,3 +41,10 @@
     }
   }
 </div>
+<footer class="attribution">
+  <p>
+    Weather data © <a href="https://www.weather.gov" target="_blank">National Weather Service</a>.
+    <br />
+    Icons by <a href="https://www.dovora.com" target="_blank">Dovora</a>.
+  </p>
+</footer>

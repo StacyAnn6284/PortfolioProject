@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '
 import { WeatherApiService } from './services/weather-api.service';
 import { ForecastPeriod } from './models/weatherPeriod.model';
 import { ProjectArrowComponent } from '../project-arrow/project-arrow';
+import { NWS_ICON_MAP } from './services/icon-map';
 
 @Component({
   selector: 'app-weather-app',
@@ -43,9 +44,19 @@ export class WeatherAppComponent implements OnInit {
     });
     this.weatherApi.getForecast(location).subscribe({
       next: (forecast) => {
-        this.forecastPeriods = forecast.properties?.periods ?? [];
+        this.forecastPeriods = forecast.properties?.periods.map((p: ForecastPeriod) => {
+          const code = this.extractIconCode(p.icon);
+          const fileName = NWS_ICON_MAP[code] || 'cloud.png';
+
+          return {
+            ...p,
+            icon: `assets/weather-icons/${fileName}`,
+          };
+        });
         this.expanded = this.forecastPeriods.map(() => false);
+        console.log(this.forecastPeriods);
       },
+
       error: (err) => console.error('Forecast error:', err),
     });
   }
@@ -54,5 +65,10 @@ export class WeatherAppComponent implements OnInit {
     this.expanded[index] = !this.expanded[index];
   }
 
-  //if shortForecast contains.... snow - show snow, sunny, show sun, etc.
+  extractIconCode(url: string): string {
+    if (!url) return '';
+    const parts = url.split('/');
+    const last = parts[parts.length - 1];
+    return last.split(',')[0].split('?')[0];
+  }
 }
