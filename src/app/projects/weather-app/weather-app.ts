@@ -54,7 +54,6 @@ export class WeatherAppComponent implements OnInit {
           };
         });
         this.expanded = this.forecastPeriods.map(() => false);
-        console.log(this.forecastPeriods);
       },
 
       error: (err) => console.error('Forecast error:', err),
