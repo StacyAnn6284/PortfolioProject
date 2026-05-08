@@ -12,8 +12,6 @@ export class WeatherApiService {
   private openWeatherKey = environment.openWeatherKey;
   constructor(private http: HttpClient) {}
 
-  private apiKey = '1bd415144549a15084267c6e70c31e1f';
-
   convertToLatAndLong(location: string): Observable<{ lat: number; lng: number }> {
     const url = `https://api.geocod.io/v1.7/geocode?q=${encodeURIComponent(
       location,
