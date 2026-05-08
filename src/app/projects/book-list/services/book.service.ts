@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { Book } from '../models/book-model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  private url = 'https://portfoliobackend-production.up.railway.app/api/books';
+  private url = environment.railwayAPI;
   private http = inject(HttpClient);
 
   getAllBooks(filter: string, searchTerm: string): Promise<Book[]> {
