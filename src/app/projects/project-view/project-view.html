@@ -1,9 +1,44 @@
-<div class="project-container">
+<div class="projects-landing">
   <h1>Projects</h1>
-  <div class="project-button-container">
-    <button type="button" (click)="showWeather()">Weather App</button>
-    <button type="button" (click)="showCalendar()">Calendar</button>
-    <button type="button" (click)="showBookList()">BookList</button>
+
+  <p class="projects-intro">
+    Below are examples of applications that highlight my approach to building clean, scalable, and
+    intuitive software. Each project demonstrates a different part of my skill set from API
+    orchestration and real-time data handling to full-stack development and modern Angular
+    architecture.
+  </p>
+
+  <div class="projects-grid">
+    <!-- Weather App -->
+    <button type="button" class="project-card" (click)="showWeather()">
+      <h2>Weather App</h2>
+      <p>
+        • Multi‑API integration (Geocod.io, OpenWeather, weather.gov)<br />
+        • RxJS pipelines with <code>switchMap</code><br />
+        • Reactive Forms + dynamic forecast UI
+      </p>
+    </button>
+
+    <!-- Calendar -->
+    <button type="button" class="project-card" (click)="showCalendar()">
+      <h2>Calendar</h2>
+      <p>
+        • Firebase NoSQL + real‑time syncing<br />
+        • Auth‑scoped CRUD operations<br />
+        • Angular Signals + Luxon date logic
+      </p>
+    </button>
+
+    <!-- BookList -->
+    <button type="button" class="project-card" (click)="showBookList()">
+      <h2>BookList</h2>
+      <p>
+        • Custom Express + PostgreSQL API on Railway<br />
+        • Full CRUD with TanStack Query<br />
+        • Search, filtering, and interactive rating UI
+      </p>
+    </button>
   </div>
 </div>
+
 <router-outlet></router-outlet>
